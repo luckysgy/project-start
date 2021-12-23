@@ -9,15 +9,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>projectstart-modules</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>projectstart-user-manage</module>
-    </modules>
+    <artifactId>projectstart-api</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.concise</groupId>
+            <artifactId>component-core</artifactId>
+        </dependency>
+    </dependencies>
 </project>

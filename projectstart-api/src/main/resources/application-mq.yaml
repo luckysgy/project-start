@@ -1,0 +1,6 @@
+# mq相关配置
+rocketmq:
+  email:
+    topic: eamil-topic
+    group: eamil-group
+    tag: eamil-group

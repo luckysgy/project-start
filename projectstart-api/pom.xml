@@ -21,5 +21,10 @@
             <groupId>com.concise</groupId>
             <artifactId>component-core</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.concise</groupId>
+            <artifactId>component-mq-rocketmq</artifactId>
+        </dependency>
     </dependencies>
 </project>

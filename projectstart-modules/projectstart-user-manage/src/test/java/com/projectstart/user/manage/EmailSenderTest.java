@@ -19,6 +19,6 @@ public class EmailSenderTest {
 
     @Test
     public void test() {
-        emailMessageListener.onMessage(new EmailMessage());
+
     }
 }

@@ -1,4 +1,4 @@
-package com.projectstart.user.manage.application;
+package com.projectstart.news.application;
 
 import com.projectstart.api.application.NewsService;
 import com.projectstart.api.application.command.EmailSendCommand;
@@ -16,7 +16,6 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public void sendEmail(EmailSendCommand emailSendCommand) {
-        log.info("start send email");
-        NewsService.super.sendEmail(emailSendCommand);
+        log.info("start send email {}", emailSendCommand);
     }
 }

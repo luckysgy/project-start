@@ -19,12 +19,30 @@
     <dependencies>
         <dependency>
             <groupId>com.concise</groupId>
+            <artifactId>component-log</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.concise</groupId>
+            <artifactId>component-feign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.concise</groupId>
             <artifactId>component-core</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.concise</groupId>
             <artifactId>component-mq-rocketmq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.concise</groupId>
+            <artifactId>component-ddd</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.concise</groupId>
+            <artifactId>component-datasource-mybatisplus</artifactId>
         </dependency>
     </dependencies>
 </project>

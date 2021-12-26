@@ -4,3 +4,7 @@ rocketmq:
     topic: eamil-topic
     group: eamil-group
     tag: eamil-group
+  order:
+    topic: order-topic
+    group: order-group
+    tag: order-group

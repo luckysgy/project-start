@@ -15,6 +15,7 @@
         <module>projectstart-user-manage</module>
         <module>projectstart-news</module>
         <module>projectstart-order</module>
+        <module>projectstart-stock</module>
     </modules>
 
     <properties>

@@ -12,7 +12,7 @@ public interface UserRepository {
      * @param user
      * @return
      */
-    default int save(User user) { return -1;};
+    default int store(User user) { return -1;};
 
     /**
      * 查询用户
@@ -20,4 +20,11 @@ public interface UserRepository {
      * @return
      */
     default User find(Username username) { return null;}
+
+    /**
+     * 查询用户
+     * @param userId 用户id
+     * @return
+     */
+    default User find(UserId userId) { return null;}
 }

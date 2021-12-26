@@ -1,6 +1,7 @@
 package com.projectstart.api.infrastructure.mq;
 
 import com.projectstart.api.application.event.EmailMessage;
+import com.projectstart.api.application.event.OrderCreateMessage;
 
 /**
  * @author shenguangyang
@@ -8,4 +9,5 @@ import com.projectstart.api.application.event.EmailMessage;
  */
 public interface MqSendService {
     default void send(EmailMessage emailMessage) {}
+    default void send(OrderCreateMessage message) {}
 }

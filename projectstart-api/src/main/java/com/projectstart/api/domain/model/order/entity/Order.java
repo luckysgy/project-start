@@ -1,6 +1,7 @@
 package com.projectstart.api.domain.model.order.entity;
 
 import com.projectstart.api.domain.model.order.OrderId;
+import com.projectstart.api.domain.model.order.SerialNumber;
 import lombok.Getter;
 
 /**
@@ -10,8 +11,10 @@ import lombok.Getter;
 @Getter
 public class Order {
     private final OrderId orderId;
+    private final SerialNumber serialNumber;
 
-    public Order(OrderId orderId) {
+    public Order(OrderId orderId, SerialNumber serialNumber) {
         this.orderId = orderId;
+        this.serialNumber = serialNumber;
     }
 }

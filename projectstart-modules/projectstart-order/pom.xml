@@ -15,5 +15,16 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.concise</groupId>
+            <artifactId>component-web</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>com.projectstart</groupId>
+            <artifactId>projectstart-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

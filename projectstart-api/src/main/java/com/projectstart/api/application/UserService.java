@@ -1,6 +1,7 @@
 package com.projectstart.api.application;
 
 import com.projectstart.api.application.command.UserPasswordUpdateCommand;
+import com.projectstart.api.application.command.UserSaveCommand;
 import com.projectstart.api.domain.model.user.Password;
 
 /**
@@ -12,5 +13,11 @@ public interface UserService {
      * 更新用户密码
      * @param command 更新密码
      */
-    default void updatePassword(UserPasswordUpdateCommand command) {} ;
+    default void updatePassword(UserPasswordUpdateCommand command) {}
+
+    /**
+     * 保存用户
+     * @param command 命令
+     */
+    default void save(UserSaveCommand command) {}
 }

@@ -1,7 +1,9 @@
 package com.projectstart.user.manage.application;
 
 import com.projectstart.api.application.UserService;
+import com.projectstart.api.application.assembler.UserAssembler;
 import com.projectstart.api.application.command.UserPasswordUpdateCommand;
+import com.projectstart.api.application.command.UserSaveCommand;
 import com.projectstart.api.application.event.EmailMessage;
 import com.projectstart.api.domain.model.user.UserId;
 import com.projectstart.api.domain.model.user.UserRepository;
@@ -31,5 +33,11 @@ public class UserServiceImpl implements UserService {
         EmailMessage emailMessage = new EmailMessage();
         emailMessage.setContent("用户 id = 1 更新密码, 如果这不是本人操作请及时修改密码");
         mqSendService.send(emailMessage);
+    }
+
+    @Override
+    public void save(UserSaveCommand command) {
+        User user = UserAssembler.toUserFrom(command);
+        userRepository.store(user);
     }
 }

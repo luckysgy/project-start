@@ -53,7 +53,7 @@ spring:
     init-db: app
     url: jdbc:mysql://192.168.190.35:33336/project?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&&serverTimezone=Asia/Shanghai
     userName: root
-    password: dev_alibaba@1688
+    password: xxxxx
     # 使用我们自己的druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     druid:

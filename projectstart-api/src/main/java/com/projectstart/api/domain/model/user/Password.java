@@ -28,14 +28,18 @@ public class Password implements ValueObject<Password> {
     }
 
     public static Password create(String passwordStr) {
+        if(passwordStr == null || passwordStr.length() < 6) {
+            throw new IllegalArgumentException("密码长度不能小于6");
+        }
+
         String salt = RandomStringUtils.randomAlphanumeric(20);
         String password = MD5Utils.md5(passwordStr + salt);
         return new Password(password, salt);
     }
 
     public static Password create(String passwordStr, String salt) {
-        if(passwordStr.length() < 3) {
-            throw new IllegalArgumentException("密码长度不能小于3");
+        if(passwordStr == null || passwordStr.length() < 6) {
+            throw new IllegalArgumentException("密码长度不能小于6");
         }
         String password = MD5Utils.md5(passwordStr + salt);
         return new Password(password, salt);

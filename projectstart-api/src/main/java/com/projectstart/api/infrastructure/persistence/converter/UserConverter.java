@@ -22,11 +22,21 @@ public interface UserConverter {
 
     static UserDO toUserDOFrom(User user) {
         UserDO userDO = new UserDO();
-        userDO.setId(user.getId().getValue());
-        userDO.setPhone(user.getPhone().getValue());
-        userDO.setEmail(user.getEmail().getValue());
+        if (user.getId() != null) {
+            userDO.setId(user.getId().getValue());
+        }
+
+        if (user.getPhone() != null) {
+            userDO.setPhone(user.getPhone().getValue());
+        }
+
+        if (user.getEmail() != null) {
+            userDO.setEmail(user.getEmail().getValue());
+        }
+
         userDO.setUsername(user.getUsername().getValue());
         userDO.setPassword(user.getPassword().getPassword());
+        userDO.setSalt(user.getPassword().getSalt());
         return userDO;
     }
 }

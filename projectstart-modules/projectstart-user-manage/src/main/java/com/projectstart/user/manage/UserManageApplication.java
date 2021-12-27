@@ -1,5 +1,6 @@
 package com.projectstart.user.manage;
 
+import com.concise.component.datasource.mybatisplus.register.EnableMybatisPlus;
 import com.concise.component.mq.rocketmq.enable.EnableRocketmq;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.annotation.MapperScans;
@@ -14,6 +15,7 @@ import javax.annotation.PostConstruct;
  * @author shenguangyang
  * @date 2021-12-24 7:09
  */
+@EnableMybatisPlus
 @EnableRocketmq
 @SpringBootApplication
 @MapperScan(basePackages = "com.projectstart.api.infrastructure.persistence.mapper")

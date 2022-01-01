@@ -14,8 +14,11 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>1.8</java.version>
+        <!-- 实体转换工具 -->
+        <mapstruct.version>1.4.1.Final</mapstruct.version>
+        <lombok.version>1.18.12</lombok.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 
         <component.version>1.0.0</component.version>
     </properties>
@@ -28,6 +31,19 @@
                 <version>${component.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- 引入 lombok 依赖 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,0 +1,15 @@
+#! /bin/bash
+
+docker stop ${ed.nginx.image.name}-server
+docker rm ${ed.nginx.image.name}-server
+cur_dir=$(pwd)
+docker run -d  \
+  -p 18009:18009 \
+  -p ${ed.nginx.web.port}:${ed.nginx.web.port}  \
+  -p ${ed.nginx.rtmp.port}:${ed.nginx.rtmp.port} \
+  -p ${ed.nginx.flv.port}:${ed.nginx.flv.port} \
+  --name ${ed.nginx.image.name}-server \
+  -v ${cur_dir}/nginx.conf:/usr/local/nginx/conf/nginx.conf \
+  -v ${cur_dir}/conf-stream:/usr/local/nginx/conf/conf-stream \
+  -v ${cur_dir}/conf-http:/usr/local/nginx/conf/conf-http \
+  ${ed.nginx.image.tag}

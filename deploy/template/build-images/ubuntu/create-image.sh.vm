@@ -1,0 +1,8 @@
+#! /bin/bash
+
+docker build -t ${ed.baseImage.ubuntu.tag} .
+docker save ${ed.baseImage.ubuntu.tag} -o ${ed.baseImage.ubuntu.name}.tar
+/bin/cp -r  ${ed.baseImage.ubuntu.name}.tar #dataPath/
+echo "image --- ${ed.baseImage.ubuntu.name}.tar save to $ed.dataPath"
+rm -rf ${ed.baseImage.ubuntu.name}.tar
+

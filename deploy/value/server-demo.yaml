@@ -1,0 +1,7 @@
+serverDemo:
+  host: 127.0.0.1
+  port: 
+    web: 58089
+    grpc: 10008
+    # 代理grpc的监听端口
+    proxyGrpcListen: 20001

@@ -1,0 +1,23 @@
+#! /bin/bash
+docker pull ${ed.milvus.image.etcd.pull}
+docker pull ${ed.milvus.image.minio.pull}
+docker pull ${ed.milvus.image.milvus.pull}
+docker tag ${ed.milvus.image.etcd.pull} ${ed.milvus.image.etcd.tag}
+docker tag ${ed.milvus.image.minio.pull} ${ed.milvus.image.minio.tag}
+docker tag ${ed.milvus.image.milvus.pull} ${ed.milvus.image.milvus.tag}
+
+docker save ${ed.milvus.image.etcd.tag} -o ${ed.milvus.image.etcd.name}.tar
+docker save ${ed.milvus.image.minio.tag} -o ${ed.milvus.image.minio.name}.tar
+docker save ${ed.milvus.image.milvus.tag} -o ${ed.milvus.image.milvus.name}.tar
+
+/bin/cp -r  ${ed.milvus.image.etcd.name}.tar #dataPath/
+/bin/cp -r  ${ed.milvus.image.minio.name}.tar #dataPath/
+/bin/cp -r  ${ed.milvus.image.milvus.name}.tar #dataPath/
+
+echo "image --- ${ed.milvus.image.etcd.name}.tar save to  $ed.dataPath"
+echo "image --- ${ed.milvus.image.minio.name}.tar save to  $ed.dataPath"
+echo "image --- ${ed.milvus.image.milvus.name}.tar save to  $ed.dataPath"
+
+rm -rf ${ed.milvus.image.etcd.name}.tar
+rm -rf ${ed.milvus.image.minio.name}.tar
+rm -rf ${ed.milvus.image.milvus.name}.tar

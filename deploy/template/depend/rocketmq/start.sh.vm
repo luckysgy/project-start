@@ -1,0 +1,82 @@
+#! /bin/bash
+
+cur_dir=$(pwd)
+data_dir="${ed.rocketmq.dataRootPath}"
+
+if [ ! -d "${data_dir}/rmqnamesrv/logs" ]; then
+  mkdir -p ${data_dir}/rmqnamesrv/logs
+  chmod 777 ${data_dir}/rmqnamesrv/logs
+fi
+
+if [ ! -d "${data_dir}/rmqnamesrv/store" ]; then
+  mkdir -p ${data_dir}/rmqnamesrv/store
+  chmod 777 ${data_dir}/rmqnamesrv/store
+fi
+
+if [ ! -d "${data_dir}/rmqbroker/log" ]; then
+  mkdir -p ${data_dir}/rmqbroker/log
+  chmod 777 ${data_dir}/rmqbroker/log
+fi
+
+if [ ! -d "${data_dir}/rmqbroker/store" ]; then
+  mkdir -p ${data_dir}/rmqbroker/store
+  chmod 777 ${data_dir}/rmqbroker/store
+fi
+
+if [ ! -d "${data_dir}/rmqbroker/brokerconf" ]; then
+  mkdir -p ${data_dir}/rmqbroker/brokerconf
+  chmod 777 ${data_dir}/rmqbroker/brokerconf
+fi
+/bin/cp -r ${cur_dir}/broker.conf ${data_dir}/rmqbroker/brokerconf
+docker stop rmqbroker rmqnamesrv rmqconsole 
+docker rm rmqbroker rmqnamesrv rmqconsole
+
+## docker-compose 模式启动
+#if(${ed.rocketmq.startModel} == "docker-compose")
+docker-compose up -d
+#else
+## docker 模式启动
+
+## 启动server
+docker run -d \
+--restart=always \
+--name rmqnamesrv \
+-p ${ed.rocketmq.rmqnamesrv.port.node}:${ed.rocketmq.rmqnamesrv.port.container} \
+-v ${ed.rocketmq.dataRootPath}/rmqnamesrv/logs:/opt/logs \
+-v ${ed.rocketmq.dataRootPath}/rmqnamesrv/store:/opt/store \
+## 设置容器的最大堆内存为100000000
+-e "MAX_POSSIBLE_HEAP=100000000" \
+foxiswho/rocketmq-${ed.rocketmq.osArchitecture}:server
+echo "start rmqnamesrv"
+sleep 5
+
+docker run -d  \
+--restart=always \
+--name rmqbroker \
+--link rmqnamesrv:namesrv \
+-p 10911:10911 \
+-p ${ed.rocketmq.rmqbroker.listenPort.node}:${ed.rocketmq.rmqbroker.listenPort.container} \
+-v ${ed.rocketmq.dataRootPath}/rmqbroker/log:/opt/logs \
+-v ${ed.rocketmq.dataRootPath}/rmqbroker/store:/opt/store \
+-v ${ed.rocketmq.dataRootPath}/rmqbroker/brokerconf/broker.conf:/etc/rocketmq/broker.conf \
+-e "NAMESRV_ADDR=namesrv:${ed.rocketmq.rmqnamesrv.port.container}" \
+-e "JAVA_OPTS=-Duser.home=/opt"            \
+-e "JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m"           \
+-e "MAX_POSSIBLE_HEAP=200000000" \
+foxiswho/rocketmq-${ed.rocketmq.osArchitecture}:broker \
+mqbroker -c /etc/rocketmq/broker.conf
+echo "start rmqbroker"
+
+sleep 5
+docker run -d \
+--restart=always \
+--link rmqnamesrv:namesrv \
+--name rmqconsole \
+-e "JAVA_OPTS=-Drocketmq.namesrv.addr=namesrv:${ed.rocketmq.rmqnamesrv.port.container} -Dcom.rocketmq.sendMessageWithVIPChannel=false" \
+-v /etc/localtime:/etc/localtime  \
+-p ${ed.rocketmq.rmqconsole.port.node}:${ed.rocketmq.rmqconsole.port.container} \
+styletang/rocketmq-console-ng-${ed.rocketmq.osArchitecture}
+echo "start rmqconsole"
+
+#end
+

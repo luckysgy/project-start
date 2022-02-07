@@ -1,0 +1,12 @@
+#! /bin/bash
+
+docker pull ${ed.db.image.pull}
+docker tag ${ed.db.image.pull} ${ed.db.image.tag}
+
+docker save ${ed.db.image.tag} -o ${ed.db.name}.tar
+
+/bin/cp -r  ${ed.db.name}.tar #dataPath/
+
+echo "image --- ${ed.db.name}.tar save to  $ed.dataPath"
+rm -rf ${ed.db.name}.tar
+

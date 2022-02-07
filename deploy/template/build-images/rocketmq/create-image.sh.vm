@@ -1,0 +1,25 @@
+#! /bin/bash
+
+docker pull ${ed.rocketmq.image.server.pull}
+docker pull ${ed.rocketmq.image.broker.pull}
+docker pull ${ed.rocketmq.image.console.pull}
+
+docker tag ${ed.rocketmq.image.server.pull} ${ed.rocketmq.image.server.tag}
+docker tag ${ed.rocketmq.image.broker.pull} ${ed.rocketmq.image.broker.tag}
+docker tag ${ed.rocketmq.image.console.pull} ${ed.rocketmq.image.console.tag}
+
+docker save ${ed.rocketmq.image.server.tag} -o ${ed.rocketmq.image.server.name}.tar
+docker save ${ed.rocketmq.image.broker.tag} -o ${ed.rocketmq.image.broker.name}.tar
+docker save ${ed.rocketmq.image.console.tag} -o ${ed.rocketmq.image.console.name}.tar
+
+/bin/cp -r  ${ed.rocketmq.image.server.name}.tar #dataPath/
+/bin/cp -r  ${ed.rocketmq.image.broker.name}.tar #dataPath/
+/bin/cp -r  ${ed.rocketmq.image.console.name}.tar #dataPath/
+
+echo "image --- ${ed.rocketmq.image.server.name}.tar save to  $ed.dataPath"
+echo "image --- ${ed.rocketmq.image.broker.name}.tar save to  $ed.dataPath"
+echo "image --- ${ed.rocketmq.image.console.name}.tar save to  $ed.dataPath"
+rm -rf ${ed.rocketmq.image.server.name}.tar
+rm -rf ${ed.rocketmq.image.broker.name}.tar
+rm -rf ${ed.rocketmq.image.console.name}.tar
+

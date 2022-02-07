@@ -1,0 +1,3 @@
+FROM ${ed.redis.image.pull}
+
+

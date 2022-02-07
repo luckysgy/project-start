@@ -1,0 +1,168 @@
+dataBasePath: /mnt/data_disk/docker-volume/project/project-name
+
+nginx:
+  image:
+    tag: nginx-http-flv:v2
+    name: nginx-http-flv
+  web:
+    port: 10001
+  # ffmpeg -re -stream_loop -1 -i demo.flv -c copy -f flv rtmp://127.0.0.1:10002/video/1
+  # pushUrl = rtmp://127.0.0.1:10002/video/1
+  rtmp:
+    port: 10002
+    appName: video
+  # pullUrl = http://127.0.0.1:10004/live?port=10002&app=video&stream=1
+  flv:
+    port: 10004
+    location: /live
+
+# 应用基础镜像
+baseImage:
+  ubuntu:
+    name: ubuntu
+    pull: ubuntu:20.04
+    tag: ubuntu:20.04
+
+# 特征向量检索, 只支持amd架构
+milvus:
+  name: milvus
+  dataRootPath: ${dataBasePath}/milvus
+  enable: true
+  # milvus 所在主机的host
+  host: 47.98.61.171
+  port: ${port.appDepend.milvus}
+  vectorDim: 512
+  topK: 5
+  image:
+    minio:
+      pull: minio/minio:RELEASE.2020-12-03T00-03-10Z
+      tag: milvus-minio
+      name: milvus-minio
+    etcd:
+      pull: quay.io/coreos/etcd:v3.5.0
+      tag: milvus-etcd
+      name: milvus-etcd
+    milvus:
+      pull: milvusdb/milvus:v2.0.0-pre-ga
+      tag: milvus-server
+      name: milvus-server
+
+rocketmq:
+  name: rocketmq
+  # 启动模式 docker / docker-compose
+  # 目前在arm下只能使用docker模式启动
+  startModel: docker
+  # 应用所在主机的host
+  host: 127.0.0.1
+  image:
+    server:
+      pull: foxiswho/rocketmq:server
+      name: rocketmq-server
+      tag: rocketmq-server
+    broker:
+      pull: foxiswho/rocketmq:broker
+      name: rocketmq-broker
+      tag: rocketmq-broker
+    console:
+      pull: styletang/rocketmq-console-ng
+      name: rocketmq-console
+      tag: rocketmq-console
+  dataRootPath: ${dataBasePath}/rocketmq
+  # java等客户端对接端口
+  rmqnamesrv:
+    port:
+      node: ${port.appDepend.rocketmq.rmqnamesrv}
+      # 容器端口, 不要改变
+      container: 9876
+  rmqbroker:
+    brokerIp: 47.98.61.171
+    # Broker 对外服务的监听端口, 不要改变
+    listenPort:
+      container: 10909
+      node: 10909
+  rmqconsole:
+    port:
+      # 容器端口, 不要改变
+      container: ${port.appDepend.rocketmq.rmqconsole}
+      node: 8080
+
+kafka:
+  # # 用逗号分隔的主机:端口对列表，用于建立到Kafka群集的初始连接。覆盖全局连接设置属性
+  bootstrapServers: 192.168.190.70:9092
+  producer:
+    #  写入失败时，重试次数。当leader节点失效，一个repli节点会替代成为leader节点，此时可能出现写入失败，
+    retries: 10
+    properties:
+      # 等待时间
+      lingerMs: 1
+    # 默认批量大小。较小的批处理大小将使批处理不太常见，并可能降低吞吐量（批处理大小为零将完全禁用批处理）
+    batchSize: 16385
+    # 生产者可用于缓冲等待发送到服务器的记录的总内存大小
+    bufferMemory: 33554432
+  consumer:
+    autoCommitInterval: 1S
+    # 重置消费者的 offset, earliest: 最早的, latest: 最新的
+    # 消费者组没换 且 offset没有失效 = auto-offset-reset 不会生效
+    auto-offset-reset: earliest
+
+redis:
+  name: redis
+  image:
+    pull: redis:5.0.14
+    tag: redis-amd64
+  # 所在机器的host
+  host: 127.0.0.1
+  port: ${port.appDepend.redis}
+  password: QWER@1234
+
+db:
+  name: mysql
+  # 修改当前主机ip, 如果所有访问数据库的应用都在同一个局域网内, 填内网ip即可
+  url: jdbc:mysql://127.0.0.1:${db.port.node}/pic?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&&serverTimezone=Asia/Shanghai
+  # 如果是自己搭建mysql, 请使用root用户名
+  username: root
+  password: 23423423
+  port:
+    node: 3306
+    # 容器内部端口不要动
+    container: 3306
+  # 自己搭建的数据库数据存放地址
+  dataRootPath: ${dataBasePath}/mysql
+  image:
+    pull: mysql:8.0.21
+    tag: mysql-amd64
+
+# 文件存储配置
+storage:
+  type: oss
+  # 是否初始化桶
+  isInitBucket: true
+  url:
+    # 是否通过nginx等第三方软件代理文件访问的url, 如果使能代理路径前缀为 internal / external
+    proxy: false
+    # url过期时间单位是s,用于具有时效性的链接
+    expiryTime: 60
+    # 内网url(局域网  Local Area Network) http://192.168.190.35
+    internal: http://8.136.213.63:${port.appDepend.minio}
+    # 外网(广域网 Wide Area Network) url http://47.78.12.56
+    # 这里以 192.168.5.248 当做外网测试
+    external: http://8.136.213.63:${port.appDepend.minio}
+  minio:
+    name: minio
+    # 支持minio-amd64 minio-arm64
+    image:
+      pull: minio/minio:RELEASE.2021-06-14T01-29-23Z
+      tag: minio-amd64
+    dataRootPath: ${dataBasePath}/minio
+    accessKey: minioadmin
+    secretKey: minioadmin
+    bucketName: test
+    port: ${port.appDepend.minio}
+    # ip填写当前主机ip
+    # endpoint: http://127.0.0.1:${storage.minio.port}
+    endpoint: http://127.0.0.1:${storage.minio.port}
+  oss:
+    secretAccessKey: 23423423
+    accessKeyId: 234234
+    bucketName: vi23423
+    endpoint: http://oss-cn-hangzhou.aliyuncs.com

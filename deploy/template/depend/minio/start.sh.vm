@@ -1,0 +1,17 @@
+#! /bin/bash
+if [ ! -d "${ed.storage.minio.dataRootPath}" ]; then
+  mkdir -p ${ed.storage.minio.dataRootPath}
+  chmod 777 ${ed.storage.minio.dataRootPath}
+fi
+
+docker stop minio-server
+docker rm minio-server
+docker run -d --name minio-server -p ${ed.storage.minio.port}:${ed.storage.minio.port} --restart=always \
+-e MINIO_ACCESS_KEY=${ed.storage.minio.accessKey}   \
+-e MINIO_SECRET_KEY=${ed.storage.minio.secretKey}   \
+-v ${ed.storage.minio.dataRootPath}:/data \
+${ed.storage.minio.image} \
+server /data --address 0.0.0.0:${ed.storage.minio.port}
+
+docker ps | grep minio-server
+echo "start success"

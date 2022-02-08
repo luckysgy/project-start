@@ -1,15 +1,15 @@
 #! /bin/bash
-cur_dir=$(pwd)
 
-docker stop nginxweb
-docker rm nginxweb
+docker stop nginx-http-flv-server
+docker rm nginx-http-flv-server
+cur_dir=$(pwd)
 docker run -d  \
-  -p 60000:60000 \
-  -p ${port.proxy.web}:${port.proxy.web}  \
-  -p ${ed.nginx.grpcServer.videoStructured.listenPort}:${ed.nginx.grpcServer.videoStructured.nodePort}  \
-  -p ${ed.nginx.play.rtmpPort}:${ed.nginx.play.rtmpPort} \
-  -p ${ed.nginx.play.flvPort}:${ed.nginx.play.flvPort} \
- --name nginxweb \
- -v ${cur_dir}/nginx.conf:/usr/local/nginx/conf/nginx.conf \
- -v ${cur_dir}/tcpConf/tcp.conf:/usr/local/nginx/conf/tcpConf/tcp.conf \
- nginx_base
+  -p 18009:18009 \
+  -p 10001:10001  \
+  -p 10002:10002 \
+  -p 10004:10004 \
+  --name nginx-http-flv-server \
+  -v ${cur_dir}/nginx.conf:/usr/local/nginx/conf/nginx.conf \
+  -v ${cur_dir}/conf-stream:/usr/local/nginx/conf/conf-stream \
+  -v ${cur_dir}/conf-http:/usr/local/nginx/conf/conf-http \
+  nginx-http-flv:v2

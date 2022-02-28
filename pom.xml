@@ -11,6 +11,7 @@
     <modules>
         <module>projectstart-modules</module>
         <module>projectstart-api</module>
+        <module>create-project</module>
     </modules>
 
     <properties>

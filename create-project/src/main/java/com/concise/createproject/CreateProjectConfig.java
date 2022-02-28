@@ -6,11 +6,11 @@ package com.concise.createproject;
  */
 public class CreateProjectConfig {
     /** 工程名 */
-    public static final String projectName = "test-demo";
+    public static final String projectName = "app-cms-vue";
     /** 工程名简写 每个模块的前缀 */
-    public static final String projectNameShort = "projectstart";
+    public static final String projectNameShort = "appcms";
     /** 包名 */
-    public static final String packageName = "com.projectstart";
+    public static final String packageName = "com.appcms";
     /**
      * 是否更改组件包名为 {@link #packageName}
      */

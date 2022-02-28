@@ -12,10 +12,10 @@
     <artifactId>projectstart-modules</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>projectstart-user-manage</module>
-        <module>projectstart-news</module>
-        <module>projectstart-order</module>
-        <module>projectstart-stock</module>
+        <module>projectstart-module-user-manage</module>
+        <module>projectstart-module-news</module>
+        <module>projectstart-module-order</module>
+        <module>projectstart-module-stock</module>
     </modules>
 
     <properties>

@@ -9,28 +9,27 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>projectstart-news</artifactId>
+    <artifactId>projectstart-module-order</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-
     <dependencies>
+        <dependency>
+            <groupId>com.concise</groupId>
+            <artifactId>component-web</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.projectstart</groupId>
             <artifactId>projectstart-api</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.concise</groupId>
-            <artifactId>component-web</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
-        <finalName>news</finalName>
+        <finalName>order</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -66,7 +65,7 @@
                     <!-- 引入本地jar之后, 加入如下这行, maven才会打包进jar-->
                     <includeSystemScope>true</includeSystemScope>
                     <addResources>true</addResources>
-                    <mainClass>com.projectstart.news.NewsApplication</mainClass>
+                    <mainClass>com.projectstart.order.OrderApplication</mainClass>
 
                     <!-- 排除jar中的所有lib依赖包 -->
                     <layout>ZIP</layout>

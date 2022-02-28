@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>projectstart-stock</artifactId>
+    <artifactId>projectstart-module-stock</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

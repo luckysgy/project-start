@@ -31,6 +31,7 @@ public class CreateProject {
         add("**" + File.separator + "target");
         add("**" + File.separator + "node_modules");
         add("logs");
+        add(".idea");
         add(".git");
     }};
 

@@ -6,7 +6,7 @@ package com.concise.createproject;
  */
 public class CreateProjectConfig {
     /** 工程名 */
-    public static final String projectName = "app-cms-vue";
+    public static final String projectName = "app-cms";
     /** 工程名简写 每个模块的前缀 */
     public static final String projectNameShort = "appcms";
     /** 包名 */

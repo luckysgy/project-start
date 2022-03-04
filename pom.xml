@@ -12,6 +12,7 @@
         <module>projectstart-modules</module>
         <module>projectstart-api</module>
         <module>create-project</module>
+        <module>projectstart-common</module>
     </modules>
 
     <properties>

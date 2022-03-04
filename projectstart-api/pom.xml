@@ -18,6 +18,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.projectstart</groupId>
+            <artifactId>projectstart-common-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.concise</groupId>
             <artifactId>component-log</artifactId>
         </dependency>

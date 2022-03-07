@@ -3,4 +3,4 @@
  * @author shenguangyang
  * @date 2021-12-24 6:58
  */
-package com.projectstart.common.core.mq;
+package com.projectstart.common.core.base.mq;

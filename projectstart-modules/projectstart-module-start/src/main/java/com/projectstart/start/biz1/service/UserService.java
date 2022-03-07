@@ -1,6 +1,6 @@
 package com.projectstart.start.biz1.service;
 
-import com.projectstart.common.core.entity.UserDO;
+import com.projectstart.common.core.biz1.entity.UserDO;
 import com.projectstart.start.biz1.dto.UpdatePasswordReqDTO;
 
 /**

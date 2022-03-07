@@ -1,4 +1,4 @@
-package com.projectstart.common.core.assembler;
+package com.projectstart.common.core.biz1.assembler;
 
 /**
  * @author shenguangyang

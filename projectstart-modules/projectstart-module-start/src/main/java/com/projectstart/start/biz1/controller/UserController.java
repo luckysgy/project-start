@@ -1,7 +1,7 @@
 package com.projectstart.start.biz1.controller;
 
 import com.concise.component.core.entity.response.Response;
-import com.projectstart.common.core.entity.UserDO;
+import com.projectstart.common.core.biz1.entity.UserDO;
 import com.projectstart.start.biz1.dto.UpdatePasswordReqDTO;
 import com.projectstart.start.biz1.service.UserService;
 

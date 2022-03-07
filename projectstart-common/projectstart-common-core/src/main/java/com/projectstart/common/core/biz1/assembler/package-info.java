@@ -6,4 +6,4 @@
  * @author shenguangyang
  * @date 2021-12-24 7:14
  */
-package com.projectstart.common.core.assembler;
+package com.projectstart.common.core.biz1.assembler;

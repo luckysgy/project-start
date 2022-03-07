@@ -1,4 +1,4 @@
-package com.projectstart.common.core.event;
+package com.projectstart.common.core.biz1.event;
 
 import lombok.Data;
 

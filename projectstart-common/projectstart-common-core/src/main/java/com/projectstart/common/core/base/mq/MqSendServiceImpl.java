@@ -1,7 +1,7 @@
-package com.projectstart.common.core.mq;
+package com.projectstart.common.core.base.mq;
 
-import com.projectstart.common.core.event.EmailMessage;
-import com.projectstart.common.core.event.OrderCreateMessage;
+import com.projectstart.common.core.biz1.event.EmailMessage;
+import com.projectstart.common.core.biz1.event.OrderCreateMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

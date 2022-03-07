@@ -1,4 +1,4 @@
-package com.projectstart.common.core.entity;
+package com.projectstart.common.core.biz1.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;

@@ -1,9 +1,9 @@
 package com.projectstart.start.biz1.service.impl;
 
-import com.projectstart.common.core.entity.UserDO;
+import com.projectstart.common.core.biz1.entity.UserDO;
 import com.projectstart.start.biz1.dto.UpdatePasswordReqDTO;
 
-import com.projectstart.common.core.mq.MqSendService;
+import com.projectstart.common.core.base.mq.MqSendService;
 import com.projectstart.start.biz1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

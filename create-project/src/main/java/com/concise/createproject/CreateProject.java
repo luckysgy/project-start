@@ -1,7 +1,6 @@
 package com.concise.createproject;
-import cn.hutool.core.util.ReUtil;
 import com.concise.component.core.utils.ReflectUtils;
-import com.concise.component.util.file.FileUtils;
+import com.concise.component.core.utils.file.FileUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +15,6 @@ import java.util.List;
  * @date 2021/7/8 20:27
  */
 public class CreateProject {
-
     // 组件工程包名
     private static final String componentPackageName = "com.concise";
     // project-start工程包名

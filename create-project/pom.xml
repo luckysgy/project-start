@@ -22,10 +22,5 @@
             <groupId>com.concise</groupId>
             <artifactId>component-core</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.concise</groupId>
-            <artifactId>component-util-file</artifactId>
-        </dependency>
     </dependencies>
 </project>

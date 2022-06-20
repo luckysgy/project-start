@@ -1,8 +1,0 @@
-#! /bin/bash
-docker pull ${ed.storage.minio.image.pull}
-docker tag ${ed.storage.minio.image.pull} ${ed.storage.minio.image.tag}
-
-docker save ${ed.storage.minio.image.tag} -o ${ed.storage.minio.name}.tar
-/bin/cp -r  ${ed.storage.minio.name}.tar #dataPath/
-echo "image --- ${ed.storage.minio.name}.tar save to  $ed.dataPath"
-rm -rf ${ed.storage.minio.name}.tar

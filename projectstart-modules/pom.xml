@@ -12,7 +12,7 @@
     <artifactId>projectstart-modules</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>projectstart-module-start</module>
+
     </modules>
 
     <properties>

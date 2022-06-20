@@ -6,11 +6,11 @@ package com.concise.createproject;
  */
 public class CreateProjectConfig {
     /** 工程名 */
-    public static final String projectName = "app-cms";
+    public static final String projectName = "file-download-server";
     /** 工程名简写 每个模块的前缀 */
-    public static final String projectNameShort = "appcms";
+    public static final String projectNameShort = "fds";
     /** 包名 */
-    public static final String packageName = "com.appcms";
+    public static final String packageName = "com.fds";
     /**
      * 是否更改组件包名为 {@link #packageName}
      */

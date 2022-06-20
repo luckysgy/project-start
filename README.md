@@ -37,3 +37,13 @@ git submodule foreach git pull origin master
 ```shell
 git submodule update
 ```
+
+# 删除子模块
+1. git rm --cached [path]
+   根据路径删除子模块的记录
+2. 编辑 .gitmodules 文件，将子模块的相关配置节点删除掉
+   清理子模块配置
+3. 编辑 .git/config 文件，将子模块的相关配置节点删除掉
+   清理子模块配置
+4. 手动删除子模块残留的目录
+   清理脏文件

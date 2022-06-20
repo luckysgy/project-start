@@ -1,7 +1,0 @@
-#! /bin/bash
-
-docker build -t ${ed.redis.image.tag} .
-docker save ${ed.redis.image.tag} -o ${ed.redis.name}.tar
-/bin/cp -r  ${ed.redis.name} #dataPath/
-echo "image --- ${ed.redis.name}.tar save to $ed.dataPath"
-rm -rf ${ed.redis.name}.tar

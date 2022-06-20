@@ -10,9 +10,9 @@
     <version>1.0.0</version>
     <modules>
         <module>projectstart-modules</module>
-        <module>projectstart-api</module>
         <module>create-project</module>
         <module>projectstart-common</module>
+        <module>projectstart-start</module>
     </modules>
 
     <properties>
@@ -21,7 +21,6 @@
         <java.version>1.8</java.version>
 
         <mapstruct.version>1.4.1.Final</mapstruct.version>
-        <lombok.version>1.18.12</lombok.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 
         <!-- grpc 通信 -->
@@ -37,6 +36,10 @@
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
 
         <component.version>1.0.0</component.version>
+
+        <!-- 8版本以上, 需要单独依赖 flyway-mysql -->
+        <!-- Flyway compatibility with MySQL and MariaDB is now an additional dependency which needs to be added to your project. -->
+        <flyway.version>8.5.12</flyway.version>
     </properties>
 
     <dependencyManagement>
@@ -49,17 +52,23 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- 引入 lombok 依赖 -->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
+            </dependency>
+
+            <!-- Flyway是一个简单开源数据库版本控制器 -->
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flyway.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-mysql</artifactId>
+                <version>${flyway.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,4 +1,5 @@
 package com.concise.createproject;
+
 import com.concise.component.core.utils.ReflectUtils;
 import com.concise.component.core.utils.file.FileUtils;
 
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * 作用: 将components 作为子模块添加到project-start工程中
  * 然后，执行当前类可以生成 {@link CreateProjectConfig} 中配置的目标工程
+ *
  * @author shenguangyang
  * @date 2021/7/8 20:27
  */
@@ -39,6 +41,7 @@ public class CreateProject {
 
     /**
      * 获取排除路径的正则表达式
+     *
      * @return
      */
     private static List<String> getExcludeFilePathReg() throws IOException {
@@ -48,7 +51,7 @@ public class CreateProject {
 
         for (String excludeFile : copyExcludeFiles) {
             String path = currentProjectRootPath + File.separator + excludeFile;
-            path = path.replace("\\","\\\\");
+            path = path.replace("\\", "\\\\");
             String regPath = ReflectUtils.getRegPath(path);
             regFilePaths.add(regPath);
         }
@@ -62,7 +65,7 @@ public class CreateProject {
         // 参数为空 获取当前项目的根路径
         File directory = new File("");
         String courseFile = directory.getCanonicalPath();
-        String rootPath = courseFile.substring(0,courseFile.lastIndexOf(File.separator));
+        String rootPath = courseFile.substring(0, courseFile.lastIndexOf(File.separator));
         String newProjectPath = rootPath + File.separator + CreateProjectConfig.projectName;
         System.out.println(courseFile);
         System.out.println(rootPath);
@@ -78,13 +81,13 @@ public class CreateProject {
             if (CreateProjectConfig.isUpdateComponentPackageName) {
                 newPath = (newProjectPath + File.separator + projectFilePath)
                         .replace(projectStartName, CreateProjectConfig.projectName)
-                        .replace(componentPackagePath,newPackagePath)
-                        .replace(projectStartPackagePath,newPackagePath)
+                        .replace(componentPackagePath, newPackagePath)
+                        .replace(projectStartPackagePath, newPackagePath)
                         .replace(projectStartNameShort, CreateProjectConfig.projectNameShort);
             } else {
                 newPath = (newProjectPath + File.separator + projectFilePath)
                         .replace(projectStartName, CreateProjectConfig.projectName)
-                        .replace(projectStartPackagePath,newPackagePath)
+                        .replace(projectStartPackagePath, newPackagePath)
                         .replace(projectStartNameShort, CreateProjectConfig.projectNameShort);
             }
 

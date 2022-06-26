@@ -6,8 +6,6 @@
 git submodule update --init --recursive
 ```
 
-
-
 通过create-project模块创建工程 `CreateProjectConfig`
 
 ```java
@@ -27,10 +25,7 @@ public class CreateProjectConfig {
      */
     public static final Boolean isUpdateComponentPackageName = false;
 }
-
 ```
-
-
 
 # git
 
@@ -80,7 +75,7 @@ git submodule update
 
 ## 删除子模块
 
-1. git rm --cached [path]
+1. git rm --cached [path] -r
    根据路径删除子模块的记录
 2. 编辑 .gitmodules 文件，将子模块的相关配置节点删除掉
    清理子模块配置

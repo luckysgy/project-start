@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modules>
-        <module>projectstart-modules</module>
         <module>create-project</module>
         <module>projectstart-common</module>
         <module>projectstart-start</module>

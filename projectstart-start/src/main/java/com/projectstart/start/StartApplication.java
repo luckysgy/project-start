@@ -26,7 +26,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class StartApplication {
     private static final Logger log = LoggerFactory.getLogger(StartApplication.class);
-
     public static void main(String[] args) {
         // 不启动web
 //        new SpringApplicationBuilder(StartApplication.class).web(WebApplicationType.NONE).run(args);
